@@ -1,0 +1,55 @@
+package br.com.fiap.api_rest.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
+
+@Entity
+@Table(name= "DB_PRODUTO")
+public class Produto {
+    @Column(name = "id")
+    private UUID id;
+    @Column(name = "nome_produto")
+    private String nome_produto;
+    @Column(name = "preco")
+    private BigDecimal preco;
+    @Column(name = "expiracao")
+    private LocalDate expiracao;
+
+    public Produto() {
+    }
+
+    public Produto(String nome_produto, BigDecimal preco, LocalDate expiracao) {
+        this.nome_produto = nome_produto;
+        this.preco = preco;
+        this.expiracao = expiracao;
+    }
+
+    public String getNome_produto() {
+        return nome_produto;
+    }
+
+    public void setNome_produto(String nome_produto) {
+        this.nome_produto = nome_produto;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public LocalDate getExpiracao() {
+        return expiracao;
+    }
+
+    public void setExpiracao(LocalDate expiracao) {
+        this.expiracao = expiracao;
+    }
+}
