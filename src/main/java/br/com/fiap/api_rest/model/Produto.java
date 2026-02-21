@@ -1,8 +1,6 @@
 package br.com.fiap.api_rest.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,6 +9,8 @@ import java.util.UUID;
 @Entity
 @Table(name= "DB_PRODUTO")
 public class Produto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
     @Column(name = "nome_produto")
