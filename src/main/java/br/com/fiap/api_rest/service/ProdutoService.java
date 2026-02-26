@@ -18,7 +18,7 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
-    public Optional<Produto> read(UUID id) {
+    public Produto read(UUID id) {
         Optional<Produto> produto = produtoRepository.findById(id);
         return produto.orElse(null);
     }

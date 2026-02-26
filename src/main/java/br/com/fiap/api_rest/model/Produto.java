@@ -29,6 +29,14 @@ public class Produto {
         this.expiracao = expiracao;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getNome_produto() {
         return nome_produto;
     }
