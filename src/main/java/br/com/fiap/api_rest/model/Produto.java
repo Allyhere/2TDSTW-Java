@@ -1,6 +1,7 @@
 package br.com.fiap.api_rest.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -37,11 +38,11 @@ public class Produto {
         this.id = id;
     }
 
-    public String getNome_produto() {
+    public String getNome() {
         return nome_produto;
     }
 
-    public void setNome_produto(String nome_produto) {
+    public void setNome(String nome_produto) {
         this.nome_produto = nome_produto;
     }
 
