@@ -1,31 +1,30 @@
 package br.com.fiap.api_rest.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name= "DB_PRODUTO")
+@Table(name = "TB_PRODUTOS")
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
     @Column(name = "nome_produto")
-    private String nome_produto;
-    @Column(name = "preco")
+    private String nome;
+    @Column(name = "preco_produto")
     private BigDecimal preco;
-    @Column(name = "expiracao")
+    @Column(name = "data_validade")
     private LocalDate expiracao;
 
     public Produto() {
     }
 
-    public Produto(String nome_produto, BigDecimal preco, LocalDate expiracao) {
-        this.nome_produto = nome_produto;
+    public Produto(String nome, BigDecimal preco, LocalDate expiracao) {
+        this.nome = nome;
         this.preco = preco;
         this.expiracao = expiracao;
     }
@@ -39,11 +38,11 @@ public class Produto {
     }
 
     public String getNome() {
-        return nome_produto;
+        return nome;
     }
 
-    public void setNome(String nome_produto) {
-        this.nome_produto = nome_produto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public BigDecimal getPreco() {

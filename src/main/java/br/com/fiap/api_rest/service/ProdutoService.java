@@ -1,34 +1,52 @@
 package br.com.fiap.api_rest.service;
 
 import br.com.fiap.api_rest.dto.ProdutoRequest;
+import br.com.fiap.api_rest.dto.ProdutoResponse;
+import br.com.fiap.api_rest.mapper.ProdutoMapper;
 import br.com.fiap.api_rest.model.Produto;
 import br.com.fiap.api_rest.repository.ProdutoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    private final ProdutoRepository produtoRepository;
+    private final ProdutoMapper produtoMapper;
 
+    @Autowired
+    public ProdutoService(ProdutoRepository produtoRepository, ProdutoMapper produtoMapper) {
+        this.produtoRepository = produtoRepository;
+        this.produtoMapper = produtoMapper;
+    }
+
+    // CRUD
     public Produto create(ProdutoRequest produtoRequest) {
-        Produto produto =  new Produto();
+        Produto produto = new Produto();
         BeanUtils.copyProperties(produtoRequest, produto);
         return produtoRepository.save(produto);
     }
 
-    public Produto read(UUID id) {
-        Optional<Produto> produto = produtoRepository.findById(id);
-        return produto.orElse(null);
+    public ProdutoResponse read(UUID id) {
+        Optional<Produto> produto =  produtoRepository.findById(id);
+        if (produto.isEmpty()) {
+            return null;
+        }
+        return produtoMapper.produtoToResponse(produto.get());
     }
 
-    public List<Produto> read() {
-        return produtoRepository.findAll();
+
+    public Page<ProdutoResponse> read(Pageable pageable) {
+        return produtoRepository.findAll(pageable)
+                .map(produtoMapper::produtoToResponse);
     }
 
     public Produto update(Produto produto) {
