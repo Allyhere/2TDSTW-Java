@@ -2,6 +2,7 @@ package br.com.fiap.api_rest.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -19,12 +20,12 @@ public class Pedido {
     private LocalDate data;
     private List<Produto> pedido;
     @Column(name = "valor_pedido")
-    private Double valor;
+    private BigDecimal valor;
 
     public Pedido() {
     }
 
-    public Pedido(String status, LocalDate data, List<Produto> pedido, Double valor) {
+    public Pedido(String status, LocalDate data, List<Produto> pedido, BigDecimal valor) {
         this.status = status;
         this.data = data;
         this.pedido = pedido;
@@ -63,11 +64,11 @@ public class Pedido {
         this.pedido = pedido;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 }
