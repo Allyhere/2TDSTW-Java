@@ -1,9 +1,9 @@
 package br.com.fiap.api_rest.repository;
 
-import br.com.fiap.api_rest.model.Produto;
+import br.com.fiap.api_rest.model.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface ProdutoRepository extends JpaRepository<Produto, UUID> {
+public interface EnderecoRepository extends JpaRepository<Endereco, UUID> {
 }
